@@ -1,0 +1,625 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AspNetCoreCommon</name>
+    </assembly>
+    <members>
+        <member name="T:Computer">
+            <summary>
+            获取计算机信息辅助类
+            </summary>
+        </member>
+        <member name="F:Computer.CpuID">
+            <summary>
+            CPU的ID  
+            </summary>
+        </member>
+        <member name="F:Computer.CpuCount">
+            <summary>
+            CPU的个数  
+            </summary>
+        </member>
+        <member name="F:Computer.CpuMHZ">
+            <summary>
+            CPU频率  单位：hz  
+            </summary>
+        </member>
+        <member name="F:Computer.MacAddress">
+            <summary>
+            计算机的MAC地址  
+            </summary>
+        </member>
+        <member name="F:Computer.DiskID">
+            <summary>
+            硬盘的ID  
+            </summary>
+        </member>
+        <member name="F:Computer.DiskSize">
+            <summary>
+            硬盘大小  单位：bytes  
+            </summary>
+        </member>
+        <member name="F:Computer.IpAddress">
+            <summary>
+            计算机的IP地址  
+            </summary>
+        </member>
+        <member name="F:Computer.LoginUserName">
+            <summary>
+            操作系统登录用户名 
+            </summary>
+        </member>
+        <member name="F:Computer.ComputerName">
+            <summary>
+            计算机名  
+            </summary>
+        </member>
+        <member name="F:Computer.SystemType">
+            <summary>
+            计算机名
+            </summary>
+        </member>
+        <member name="F:Computer.TotalPhysicalMemory">
+            <summary>
+            总共的内存  单位：M   
+            </summary>
+        </member>
+        <member name="M:Computer.GetUserName">
+               <summary>    
+              操作系统的登录用户名   
+               </summary>    
+               <returns>  </returns>    
+        </member>
+        <member name="T:FileHelper">
+            <summary>
+            文件操作辅助类
+            </summary>
+        </member>
+        <member name="M:FileHelper.GetFile(System.String,System.String)">
+             <summary>
+            利用 IO流读取所有文件
+             </summary>
+             <param name="path">路径</param>
+             <param name="filter">格式 所有文件写  *.* 指定文件例如jpg:*.jpg</param>
+             <returns>返回string数组</returns>
+        </member>
+        <member name="M:FileHelper.CreateDir(System.String)">
+            <summary>
+            创建文件夹
+            </summary>
+            <param name="dirName">文件夹名称（含有路径）</param>
+            <returns>true：成功；false:失败</returns>
+        </member>
+        <member name="M:FileHelper.CreateFile(System.String)">
+            <summary>
+            创建文件
+            </summary>
+            <param name="fileName">文件名字（含有路径）</param>
+            <returns></returns>
+        </member>
+        <member name="M:FileHelper.CopyDir(System.IO.DirectoryInfo,System.String,System.String)">
+            <summary>
+            复制目录
+            </summary>
+            <param name="fromDir">被复制的目录</param>
+            <param name="toDir">复制到的目录</param>
+            <param name="rootDir">被复制的根目录</param>
+            <returns></returns>
+        </member>
+        <member name="M:FileHelper.DelFile(System.String)">
+             <summary>
+            利用IO流删除文件
+             </summary>
+             <param name="path">文件路径</param>
+             <returns>true：成功；false：失败</returns>
+        </member>
+        <member name="M:FileHelper.IsFile(System.String)">
+            <summary>
+            判断是否存在此文件
+            </summary>
+            <param name="path">文件路径</param>
+            <returns>true：存在；false：不存在</returns>
+        </member>
+        <member name="M:FileHelper.IsFileDirectory(System.String)">
+            <summary>
+            判断是否存在此文件目录
+            </summary>
+            <param name="path">文件目录路径</param>
+            <returns>true：存在；false：不存在</returns>
+        </member>
+        <member name="T:Com.Dikeko.Common.JsonHelper">
+            <summary>
+            Json解析操作类
+            </summary>
+        </member>
+        <member name="M:Com.Dikeko.Common.JsonHelper.SerializeObject(System.Object)">
+            <summary>
+            将对象序列化为JSON格式
+            </summary>
+            <param name="o">对象</param>
+            <returns>json字符串</returns>
+        </member>
+        <member name="M:Com.Dikeko.Common.JsonHelper.JsonToString(System.Object,System.String)">
+            <summary>
+            根据KEY获取JSON值
+            </summary>
+            <param name="jsonstr">JSON字符串</param>
+            <param name="Keys">JSON KEY</param>
+            <returns>string</returns>
+        </member>
+        <member name="M:Com.Dikeko.Common.JsonHelper.DeserializeJsonToObject``1(System.String)">
+            <summary>
+            解析JSON字符串生成对象实体
+            </summary>
+            <typeparam name="T">对象类型</typeparam>
+            <param name="json">json字符串</param>
+            <returns>对象实体</returns>
+        </member>
+        <member name="M:Com.Dikeko.Common.JsonHelper.DeserializeJsonToList``1(System.String)">
+            <summary>
+            解析JSON数组生成对象实体集合
+            </summary>
+            <typeparam name="T">对象类型</typeparam>
+            <param name="json">json数组字符串(eg.[{"ID":"112","Name":"石子儿"}])</param>
+            <returns>对象实体集合</returns>
+        </member>
+        <member name="M:Com.Dikeko.Common.JsonHelper.DeserializeAnonymousType``1(System.String,``0)">
+             <summary>
+             反序列化JSON到给定的匿名对象.
+             匿名对象解析
+            var tempEntity = new { ID = 0, Name = string.Empty };
+            string json5 = JsonHelper.SerializeObject(tempEntity);
+            json5 : {"ID":0,"Name":""}
+            tempEntity = JsonHelper.DeserializeAnonymousType("{\"ID\":\"112\",\"Name\":\"石子儿\"}", tempEntity);
+            var tempStudent = new Student();
+            tempStudent = JsonHelper.DeserializeAnonymousType("{\"ID\":\"112\",\"Name\":\"石子儿\"}", tempStudent);
+             </summary>
+             <typeparam name="T">匿名对象类型</typeparam>
+             <param name="json">json字符串</param>
+             <param name="anonymousTypeObject">匿名对象</param>
+             <returns>匿名对象</returns>
+        </member>
+        <member name="T:Logs">
+            <summary>
+            生成操作日志类
+            </summary>
+        </member>
+        <member name="M:Logs.SetLog(System.DateTime,System.String,System.String)">
+            <summary>
+            写入日志
+            </summary>
+            <param name="time">操作时间</param>
+            <param name="strMessage">操作内容</param>
+            <param name="userpath">自定义路径名称（例如：logsfile）</param>
+        </member>
+        <member name="M:Logs.GetHostAddress">
+            <summary>
+            获取客户端IP地址（无视代理）
+            </summary>
+            <returns>若失败则返回回送地址</returns>
+        </member>
+        <member name="M:Logs.IsIP(System.String)">
+            <summary>
+            检查IP地址格式
+            </summary>
+            <param name="ip"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Mail">
+            <summary>
+            发送电子邮件类
+            </summary>
+        </member>
+        <member name="M:Mail.SendMail(System.String,System.String,System.String,System.String,System.String,System.String,System.Boolean,System.Net.Mail.MailPriority,System.Text.Encoding,System.String[])">
+            <summary>
+            发送电子邮件函数
+            </summary>
+            <param name="txtHost">电子邮件服务主机名称</param>
+            <param name="txtFrom">发送人地志</param>
+            <param name="txtPass">发信人密码</param>
+            <param name="txtTo">收信人地址</param>
+            <param name="txtSubject">邮件标题</param>
+            <param name="txtBody">邮件内容</param>
+            <param name="isBodyHtml">是否采用HTML编码</param>
+            <param name="priority">电子邮件的优先级别</param>
+            <param name="encoding">内容采用的编码方式</param>
+            <param name="files">附件（可选填）</param>
+            <returns>操作结果</returns>
+        </member>
+        <member name="M:Mail.MassSendMail(System.String,System.String,System.String,System.String,System.String,System.String,System.Boolean,System.Net.Mail.MailPriority,System.Text.Encoding,System.String[])">
+            <summary>
+            群发送电子邮件函数
+            </summary>
+            <param name="txtHost">电子邮件服务主机名称</param>
+            <param name="txtFrom">发送人地志</param>
+            <param name="txtPass">发信人密码</param>
+            <param name="txtTo">收信人地址</param>
+            <param name="txtSubject">邮件标题</param>
+            <param name="txtBody">邮件内容</param>
+            <param name="isBodyHtml">是否采用HTML编码</param>
+            <param name="priority">电子邮件的优先级别</param>
+            <param name="encoding">内容采用的编码方式</param>
+            <param name="files">附件（可选填）</param>
+            <returns>操作结果</returns>
+        </member>
+        <member name="T:MD5Pwd">
+            <summary>
+            MD5加密类
+            </summary>
+        </member>
+        <member name="M:MD5Pwd.MD5(System.String)">
+            <summary>
+            MD5加密方法
+            </summary>
+            <param name="Md5Str">加密字符</param>
+            <returns>string</returns>
+        </member>
+        <member name="T:MessageBox">
+            <summary>
+            消息提示对话框类
+            </summary>
+        </member>
+        <member name="M:MessageBox.Show(System.Web.UI.Page,System.String)">
+            <summary>
+            显示消息提示对话框
+            </summary>
+            <param name="page">当前页面指针，一般为this</param>
+            <param name="msg">提示信息</param>
+        </member>
+        <member name="M:MessageBox.ShowConfirm(System.Web.UI.WebControls.WebControl,System.String)">
+            <summary>
+            控件点击 消息确认提示框
+            </summary>
+            <param name="page">当前页面指针，一般为this</param>
+            <param name="msg">提示信息</param>
+        </member>
+        <member name="M:MessageBox.ShowAndRedirect(System.Web.UI.Page,System.String,System.String)">
+            <summary>
+            显示消息提示对话框，并进行页面跳转
+            </summary>
+            <param name="page">当前页面指针，一般为this</param>
+            <param name="msg">提示信息</param>
+            <param name="url">跳转的目标URL</param>
+        </member>
+        <member name="M:MessageBox.ShowAndRedirects(System.Web.UI.Page,System.String,System.String)">
+            <summary>
+            显示消息提示对话框，并进行页面跳转
+            </summary>
+            <param name="page">当前页面指针，一般为this</param>
+            <param name="msg">提示信息</param>
+            <param name="url">跳转的目标URL</param>
+        </member>
+        <member name="M:MessageBox.ResponseScript(System.Web.UI.Page,System.String)">
+            <summary>
+            输出自定义脚本信息
+            </summary>
+            <param name="page">当前页面指针，一般为this</param>
+            <param name="script">输出脚本</param>
+        </member>
+        <member name="T:RegularExpression">
+            <summary>
+            正则表达式验证类
+            </summary>
+        </member>
+        <member name="F:RegularExpression.regxQQ">
+            <summary>
+            验证QQ
+            </summary>
+        </member>
+        <member name="F:RegularExpression.regxEml">
+            <summary>
+            验证邮箱
+            </summary>
+        </member>
+        <member name="F:RegularExpression.regxUrl">
+            <summary>
+            验证url(http://)
+            </summary>
+        </member>
+        <member name="F:RegularExpression.regxZipCode">
+            <summary>
+            验证邮编
+            </summary>
+        </member>
+        <member name="F:RegularExpression.regxIdCode">
+            <summary>
+            验证身份证号码
+            </summary>
+        </member>
+        <member name="F:RegularExpression.regxPwd">
+            <summary>
+            验证密码(字母开头，允许5-16字节，允许字母数字下划线)
+            </summary>
+        </member>
+        <member name="F:RegularExpression.regxCN">
+            <summary>
+            匹配中文
+            </summary>
+        </member>
+        <member name="F:RegularExpression.regxTel">
+            <summary>
+            验证国内电话号码（匹配形式如 0511-4405222 或 0211-87888822 ）
+            </summary>
+        </member>
+        <member name="F:RegularExpression.regxPfNum">
+            <summary>
+            匹配正浮点数
+            </summary>
+        </member>
+        <member name="F:RegularExpression.regxNfNum">
+            <summary>
+            匹配非正浮点数
+            </summary>
+        </member>
+        <member name="F:RegularExpression.regxFNum">
+            <summary>
+            匹配负浮点数
+            </summary>
+        </member>
+        <member name="F:RegularExpression.regxPhone">
+            <summary>
+            验证手机号码
+            </summary>
+        </member>
+        <member name="F:RegularExpression.regxPrice">
+            <summary>
+            验证价格
+            </summary>
+        </member>
+        <member name="F:RegularExpression.regxNum">
+            <summary>
+            匹配正整数
+            </summary>
+        </member>
+        <member name="T:RMBCommon">
+            <summary>
+            人民币处理类
+            </summary>
+        </member>
+        <member name="M:RMBCommon.CmycurD(System.Decimal)">
+            <summary> 
+            转换人民币大小金额 
+            </summary> 
+            <param name="num">金额</param> 
+            <returns>返回大写形式</returns> 
+        </member>
+        <member name="M:RMBCommon.CmycurD(System.String)">
+            <summary> 
+            一个重载，将字符串先转换成数字在调用CmycurD(decimal num) 
+            </summary> 
+            <param name="num">用户输入的金额，字符串形式未转成decimal</param> 
+            <returns></returns> 
+        </member>
+        <member name="T:StringPlusCommon">
+            <summary>
+            字符串处理类
+            </summary>
+        </member>
+        <member name="M:StringPlusCommon.GetStrArray(System.String,System.Char)">
+            <summary>
+            按照指定字符分割字符串
+            </summary>
+            <param name="str"></param>
+            <param name="c"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StringPlusCommon.DelLastComma(System.String)">
+            <summary>
+            删除最后结尾的一个逗号
+            </summary>
+        </member>
+        <member name="M:StringPlusCommon.DelLastChar(System.String,System.String)">
+            <summary>
+            删除最后结尾的指定字符后的字符
+            </summary>
+        </member>
+        <member name="M:StringPlusCommon.ToSBC(System.String)">
+            <summary>
+            转全角的函数(SBC case)
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StringPlusCommon.ToDBC(System.String)">
+            <summary>
+             转半角的函数(SBC case)
+            </summary>
+            <param name="input">输入</param>
+            <returns></returns>
+        </member>
+        <member name="M:StringPlusCommon.GetCleanStyle(System.String,System.String)">
+            <summary>
+            将字符串样式转换为纯字符串
+            </summary>
+            <param name="StrList"></param>
+            <param name="SplitString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StringPlusCommon.GetNewStyle(System.String,System.String,System.String,System.String@)">
+            <summary>
+            将字符串转换为新样式
+            </summary>
+            <param name="StrList"></param>
+            <param name="NewStyle"></param>
+            <param name="SplitString"></param>
+            <param name="Error"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StringPlusCommon.String2Unicode(System.String)">
+            <summary>  
+            字符串转Unicode  
+            </summary>  
+            <param name="source">源字符串</param>  
+            <returns>Unicode编码后的字符串</returns>  
+        </member>
+        <member name="M:StringPlusCommon.Unicode2String(System.String)">
+            <summary>  
+            Unicode转字符串  
+            </summary>  
+            <param name="source">经过Unicode编码的字符串</param>  
+            <returns>正常字符串</returns>  
+        </member>
+        <member name="T:TDESHelper">
+            <summary>
+            TDES加密类
+            </summary>
+        </member>
+        <member name="M:TDESHelper.EncryptString(System.String,System.String,System.String)">
+            <summary>
+            加密方法
+            </summary>
+            <param name="sKeystr">密钥（6位英文）</param>
+            <param name="sIVstr">向量（6位英文）</param>
+            <param name="Value">需要加密的字符串</param>
+            <returns>返回加密密文</returns>
+        </member>
+        <member name="M:TDESHelper.DecryptString(System.String,System.String,System.String)">
+            <summary>
+            解密方法
+            </summary>
+            <param name="sKeystr">密钥（6位英文）</param>
+            <param name="sIVstr">向量（6位英文）</param>
+            <param name="Value">需要加密的字符串</param>
+            <returns>返回解密明文</returns>
+        </member>
+        <!-- 对于成员“T:TimeParserCommon”忽略有格式错误的 XML 注释 -->
+        <member name="M:TimeParserCommon.ConvertDateTimeInt(System.DateTime)">
+            <summary>
+            DateTime时间格式转换为Unix时间戳格式
+            </summary>
+            <param name="time"> DateTime时间格式</param>
+            <returns>Unix时间戳格式</returns>
+        </member>
+        <member name="M:TimeParserCommon.GetTime(System.String)">
+            <summary>
+            时间戳转为C#格式时间
+            </summary>
+            <param name="timeStamp">Unix时间戳格式</param>
+            <returns>C#格式时间</returns>
+        </member>
+        <member name="M:TimeParserCommon.StartMonth(System.DateTime)">
+            <summary>
+            本月月初
+            </summary>
+            <param name="dt">当前时间</param>
+            <returns>DateTime</returns>
+        </member>
+        <member name="M:TimeParserCommon.EndMonth(System.DateTime)">
+            <summary>
+            本月月末
+            </summary>
+            <param name="dt">当前时间</param>
+            <returns>DateTime</returns>
+        </member>
+        <member name="M:TimeParserCommon.GetWeekOfYear(System.DateTime)">
+            <summary>
+            获取某一日期是该年中的第几周
+            </summary>
+            <param name="dt">日期</param>
+            <returns>该日期在该年中的周数</returns>
+        </member>
+        <member name="M:TimeParserCommon.GetWeekAmount(System.Int32)">
+            <summary>
+            获取某一年有多少周
+            </summary>
+            <param name="year">年份</param>
+            <returns>该年周数</returns>
+        </member>
+        <member name="M:TimeParserCommon.SecondToMinute(System.Int32)">
+            <summary>
+            把秒转换成分钟
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TimeParserCommon.GetMonthLastDate(System.Int32,System.Int32)">
+            <summary>
+            返回某年某月最后一天
+            </summary>
+            <param name="year">年份</param>
+            <param name="month">月份</param>
+            <returns>日</returns>
+        </member>
+        <member name="M:TimeParserCommon.DateDiff(System.DateTime,System.DateTime)">
+            <summary>
+            返回时间差
+            </summary>
+            <param name="DateTime1">第一个日期</param>
+            <param name="DateTime2">第二个日期</param>
+            <returns></returns>
+        </member>
+        <member name="T:WebHelper">
+            <summary>
+            WEB操作辅助类
+            </summary>
+        </member>
+        <member name="M:WebHelper.GetImageUrlFromArticle(System.String)">
+            <summary>
+            截取Html中第一张图片
+            </summary>
+            <param name="articleContent"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebHelper.GetImageUrl(System.String)">
+            <summary>
+            截取Html中所有图片,有循环
+            </summary>
+            <param name="articleContent"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebHelper.GetImageUrlStr(System.String)">
+            <summary>
+            截取Html中所有图片,无循环
+            </summary>
+            <param name="articleContent"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebHelper.GetFlashUrlFromArticle(System.String)">
+            <summary>
+            截取Html中第一个Flash
+            </summary>
+            <param name="articleContent"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebHelper.NullHtmlStr(System.String)">
+            <summary>
+            清空Html标签，获取纯字符串
+            </summary>
+            <param name="HtmlStr">Html字符串</param>
+            <returns>String</returns>
+        </member>
+        <member name="M:WebHelper.Randoms">
+            <summary>
+            获取随机数（99%不重复率）
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebHelper.Order(System.Double,System.Double)">
+            <summary>
+            返回评分/排序
+            </summary>
+            <param name="p">投票数</param>
+            <param name="t">相差小时</param>
+            <returns></returns>
+        </member>
+        <member name="F:WebHelper.constant">
+            <summary>
+            英文大写字母数组
+            </summary>
+        </member>
+        <member name="M:WebHelper.GenerateRandom(System.Int32)">
+            <summary>
+            按条件生成英文字母验证码
+            </summary>
+            <param name="Length"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebHelper.GetFlashUrlFromExtension(System.String,System.String)">
+            <summary>
+            获取一个a标签中的某个后缀的文件路径
+            </summary>
+            <param name="articleContent">含有一个a标签的html文本</param>
+            <param name="ext">所要获取格式后缀（例如：.pdf）</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
