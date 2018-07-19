@@ -1,4 +1,4 @@
-ASP.NET通用辅助类库适合.net framework 4.5以上版本和.net core2.0版本
+ASP.NET通用辅助类库适合.net framework 4.0版本
 通用库含有：
 FileHelper（文件操作辅助类）
 JsonHelper（Json解析操作类）
